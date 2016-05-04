@@ -17,8 +17,20 @@ class PingsController < ApplicationController
 
   def near
     location = current_user.pings.last
-    @pings = Ping.within(5, origin: location).where("user_id != ?", current_user.id)
-    render json: @pings
+    pings = Ping.within(5, origin: location).where("user_id != ?", current_user.id)
+
+    data = []
+
+    pings.each do |ping|
+      data << {
+        lat: ping.lat,
+        lng: ping.lng,
+        nickname: ping.user.nickname,
+        image: ping.user.image,
+      }
+    end
+
+    render json: data
   end
 
   private

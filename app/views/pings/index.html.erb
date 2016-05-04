@@ -2,6 +2,14 @@
 
   <div class="overlay__content">
     <button class="btn btn-get-location">Find my location</button>
+
+    <div style="display: none;">
+      <%= form_for @ping, remote: true do |f| %>
+        <%= f.text_field :lat %>
+        <%= f.text_field :lng %>
+        <%= f.submit %>
+      <% end %>
+    </div>
   </div><!--/overlay__content-->
 
 </div><!--/overlay-->

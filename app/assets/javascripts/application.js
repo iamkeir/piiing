@@ -17,6 +17,7 @@
 var gmap;
 var $mapContainer = $('.map');
 var $overlay = $('.overlay');
+var $form = $('#new_ping');
 
 // Handle if we have the geolocation API
 if (navigator.geolocation) {
@@ -29,6 +30,8 @@ if (navigator.geolocation) {
 $('.btn-get-location').click(function(e) {
   e.preventDefault();
   navigator.geolocation.getCurrentPosition(getPosition, showLocationError); // get geo data
+
+  console.log('seeking location...');
 });
 
 // Handle geolocation error
@@ -44,10 +47,25 @@ function getPosition(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
-  console.log(latitude,longitude);
+  console.log('your location:', latitude, longitude);
 
-  $overlay.hide(); // hide overlay
-  showMeOnMap(latitude,longitude); // centre map on my location
+  // populate form with location data
+  $('#ping_lat').val(latitude);
+  $('#ping_lng').val(longitude);
+
+  // submit form
+  $('#new_ping').submit();
+
+  // handle ajax
+  $form.on('ajax:success', function() {
+    $overlay.hide();
+
+    console.log('ready to sniff out other pingers...');
+    // go do ajax to get users...
+  });
+
+  // centre map on my location
+  showMeOnMap(latitude,longitude);
 };
 
 // Show me on map
@@ -73,13 +91,25 @@ function showMeOnMap(latitude,longitude) {
   // Add me as a marker!
   var marker = new google.maps.Marker({
     position: { lat: latitude, lng: longitude },
-    map: gmap,
-    title: 'Hello World!'
+    map: gmap
   });
+
+  console.log('shown you on map!');
 };
 
-// setTimeout(
-//   function() {
-//     gmap.setCenter({lat: -34.397, lng: 150.644}); // recenter
-//   },
-// 5000);
+// Get other pinger data
+function getPingers() {
+
+  // @TODO: Get other pingers AJAX/JSON
+
+  // lat, lng, zindex
+  var pingers = [
+    ['Clifton', 51.4628192, -2.6388274, 5]//,
+    // ['Coogee Beach', -33.923036, 151.259052, 4],
+    // ['Cronulla Beach', -34.028249, 151.157507, 3],
+    // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+    // ['Maroubra Beach', -33.950198, 151.259302, 1]
+  ];
+
+  return pingers;
+};

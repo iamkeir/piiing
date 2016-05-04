@@ -2,6 +2,17 @@ class PingsController < ApplicationController
   before_filter :require_login
 
   def index
+    @ping = Ping.new
+  end
+
+  def create
+    ping = Ping.new
+    ping.user = current_user
+    ping.lat = params[:ping][:lat]
+    ping.lng = params[:ping][:lng]
+    ping.save
+
+    render json: ping
   end
 
   def near

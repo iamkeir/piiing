@@ -13,3 +13,77 @@
 
 @import "normalize";
 @import "base";
+
+ul {
+  text-align: center;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background-size: 100% 100%;
+}
+
+.icon-home {
+  background-image: url(http://downloadicons.net/sites/default/files/home-icon-90563.png);
+}
+
+.icon-me {
+  background-image:
+    url(https://s-media-cache-ak0.pinimg.com/736x/43/93/55/439355e4422d32152b7fd7a725eea39d.jpg);
+}
+
+.button {
+   text-decoration: none;
+}
+
+.home{
+  width: 250px;
+  height: 100px;
+  display: block;
+  font: normal 700 40px/1 "Open Sans", sans-serif;
+  text-align: center;
+  background-color: #fefefe;
+  border: solid 5px #92A8D1;
+  &:hover {
+    background-color: darken(#92A8D1, 10%);
+  }
+}
+
+.piiing{
+  width: 200px;
+  height: 100px;
+  display: block;
+  color: black;
+  font: normal 700 40px/100px "Open Sans", sans-serif;
+  text-align: center;
+  background-color: #fefefe;
+  -moz-border-radius: 75px;
+  -webkit-border-radius: 75px;
+  border: solid 5px #92A8D1;
+  &:hover {
+    background-color: darken(#92A8D1, 10%);
+  }
+}
+
+.me{
+  width: 250px;
+  height: 100px;
+  color: #034f84;
+  display: block;
+  font: normal 700 40px/1 "Open Sans", sans-serif;
+  text-align: center;
+  background-color: #fefefe;
+  border: solid 5px #92A8D1;
+  &:hover {
+    background-color: darken(#92A8D1, 10%);
+  }
+}

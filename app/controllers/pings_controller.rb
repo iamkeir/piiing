@@ -4,6 +4,11 @@ class PingsController < ApplicationController
   def index
   end
 
+  def near
+    @pings = Ping.all
+    render json: @pings
+  end
+
   private
 
   def require_login

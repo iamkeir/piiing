@@ -1,1 +1,8 @@
-GEOLOCATE THAT SHIT
+<h1>Home Page</h1>
+
+<% if logged_in? %>
+  You are logged in.
+  <a href="/pings">Piiing!</a>
+<% else %>
+  <a href="/auth/twitter">Login</a>
+<% end %>

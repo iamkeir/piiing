@@ -13,3 +13,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+/*
+  1: World
+  5: Landmass/continent
+  10: City
+  15: Streets
+  20: Buildings
+*/
+
+// GOOGLE MAPPERY
+
+var gmap;
+var $mapContainer = $('.map');
+
+var latStart = 51.455313;
+var lngStart = -2.591902;
+
+var mapOptions = {
+  zoom: 10,
+  center: { lat: latStart, lng: lngStart }
+};
+
+gmap = new google.maps.Map($mapContainer.get(0), mapOptions); // create new map instance
+
+// setTimeout(
+//   function() {
+//     gmap.setCenter({lat: -34.397, lng: 150.644}); // recenter
+//   },
+// 5000);

@@ -5,7 +5,8 @@ class PingsController < ApplicationController
   end
 
   def near
-    @pings = Ping.all
+    location = current_user.pings.last
+    @pings = Ping.within(5, origin: location).where("user_id != ?", current_user.id)
     render json: @pings
   end
 

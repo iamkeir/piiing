@@ -9,6 +9,7 @@ gem 'sqlite3'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'geokit-rails'
 
 group :development do
   gem 'better_errors'

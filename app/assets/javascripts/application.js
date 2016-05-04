@@ -56,16 +56,29 @@ function getPosition(position) {
   // submit form
   $('#new_ping').submit();
 
+  // centre map on my location
+  showMeOnMap(latitude,longitude);
+
   // handle ajax
   $form.on('ajax:success', function() {
     $overlay.hide();
 
     console.log('ready to sniff out other pingers...');
     // go do ajax to get users...
-  });
 
-  // centre map on my location
-  showMeOnMap(latitude,longitude);
+    // FAUX AJAX DATA
+    var pingersJSON = [
+      {
+        'username': 'Clifton',
+        'lat': '51.4628192',
+        'lng': '-2.6388274'
+      },
+    ];
+
+    // show tha pingers!
+    showOtherPingers(pingersJSON);
+
+  });
 };
 
 // Show me on map
@@ -98,8 +111,7 @@ function showMeOnMap(latitude,longitude) {
 };
 
 // Get other pinger data
-function showOtherPingers() {
-
+function showOtherPingers(pingersJSON) {
   console.log('showing other pingers...');
 
   // ['Clifton', 51.4628192, -2.6388274, 5],
@@ -109,8 +121,9 @@ function showOtherPingers() {
   // ['Maroubra Beach', -33.950198, 151.259302, 1]
 
   // loop through pingers
-  $.each(pingers, function (i, v) {
+  $.each(pingersJSON, function (i, v) {
 
+    console.log(v);
 
   });
 

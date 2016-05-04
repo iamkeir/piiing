@@ -14,36 +14,12 @@
 //= require jquery_ujs
 //= require_tree .
 
-/*
-  1: World
-  5: Landmass/continent
-  10: City
-  15: Streets
-  20: Buildings
-*/
-
-// GOOGLE MAPPERY
-
-// var gmap;
-// var $mapContainer = $('#map');
+var gmap;
+var $mapContainer = $('.map');
+var $overlay = $('.overlay');
 
 // var latStart = 51.455313;
 // var lngStart = -2.591902;
-
-// var mapOptions = {
-//   zoom: 10,
-//   center: { lat: latStart, lng: lngStart }
-// };
-
-// gmap = new google.maps.Map($mapContainer.get(0), mapOptions); // create new map instance
-
-// setTimeout(
-//   function() {
-//     gmap.setCenter({lat: -34.397, lng: 150.644}); // recenter
-//   },
-// 5000);
-
-var $overlay = $('.overlay');
 
 // Handle if we have the geolocation API
 if (navigator.geolocation) {
@@ -61,13 +37,7 @@ $('.btn-get-location').click(function(e) {
 
 // Handle geolocation error
 function showLocationError(error) {
-
-  var errors = {
-      1: 'Permission denied',
-      2: 'Position unavailable',
-      3: 'Request timeout'
-    };
-
+  var errors = { 1: 'Permission denied', 2: 'Position unavailable', 3: 'Request timeout' };
   alert('Error: ' + errors[error.code]);
 };
 
@@ -91,4 +61,31 @@ function getPosition(position) {
   $('#ping_lat').val(latitude);
   $('#ping_lng').val(longitude);
   $('#new_ping').submit();
+
+  showMeOnMap(latitude,longitude); // centre map on my location
 };
+
+// Show me on map
+function showMeOnMap(latitude,longitude) {
+
+  /*
+    1: World
+    5: Landmass/continent
+    10: City
+    15: Streets
+    20: Buildings
+  */
+
+  var mapOptions = {
+    zoom: 20,
+    center: { lat: latitude, lng: longitude }
+  };
+
+  gmap = new google.maps.Map($mapContainer.get(0), mapOptions); // create new map instance
+};
+
+// setTimeout(
+//   function() {
+//     gmap.setCenter({lat: -34.397, lng: 150.644}); // recenter
+//   },
+// 5000);

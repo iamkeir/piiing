@@ -98,18 +98,25 @@ function showMeOnMap(latitude,longitude) {
 };
 
 // Get other pinger data
-function getPingers() {
+function showOtherPingers() {
 
-  // @TODO: Get other pingers AJAX/JSON
+  console.log('showing other pingers...');
 
-  // lat, lng, zindex
-  var pingers = [
-    ['Clifton', 51.4628192, -2.6388274, 5]//,
-    // ['Coogee Beach', -33.923036, 151.259052, 4],
-    // ['Cronulla Beach', -34.028249, 151.157507, 3],
-    // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    // ['Maroubra Beach', -33.950198, 151.259302, 1]
-  ];
+  // ['Clifton', 51.4628192, -2.6388274, 5],
+  // ['Coogee Beach', -33.923036, 151.259052, 4],
+  // // ['Cronulla Beach', -34.028249, 151.157507, 3],
+  // // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+  // ['Maroubra Beach', -33.950198, 151.259302, 1]
 
-  return pingers;
+  // loop through pingers
+  $.each(pingers, function (i, v) {
+
+
+  });
+
 };
+
+//
+
+
+

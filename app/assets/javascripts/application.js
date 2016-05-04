@@ -63,20 +63,14 @@ function getPosition(position) {
   $form.on('ajax:success', function() {
     $overlay.hide();
 
-    console.log('ready to sniff out other pingers...');
-    // go do ajax to get users...
+    console.log('sniffing out other pingers...');
 
-    // FAUX AJAX DATA
-    var pingersJSON = [
-      {
-        'username': 'Clifton',
-        'lat': '51.4628192',
-        'lng': '-2.6388274'
-      },
-    ];
+    // get the pingers as JSON
+    $.getJSON('/pings/near', function(pingsJSON) {
 
-    // show tha pingers!
-    showOtherPingers(pingersJSON);
+      // show tha pingers!
+      showOtherPingers(pingsJSON);
+    });
 
   });
 };
@@ -94,7 +88,7 @@ function showMeOnMap(latitude,longitude) {
 
   // map options
   var mapOptions = {
-    zoom: 10,
+    zoom: 17,
     center: { lat: latitude, lng: longitude }
   };
 
@@ -104,32 +98,35 @@ function showMeOnMap(latitude,longitude) {
   // Add me as a marker!
   var marker = new google.maps.Marker({
     position: { lat: latitude, lng: longitude },
-    map: gmap
+    map: gmap,
+    zIndex: 999
   });
 
   console.log('shown you on map!');
 };
 
 // Get other pinger data
-function showOtherPingers(pingersJSON) {
+function showOtherPingers(pingers) {
   console.log('showing other pingers...');
 
-  // ['Clifton', 51.4628192, -2.6388274, 5],
-  // ['Coogee Beach', -33.923036, 151.259052, 4],
-  // // ['Cronulla Beach', -34.028249, 151.157507, 3],
-  // // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  // ['Maroubra Beach', -33.950198, 151.259302, 1]
-
   // loop through pingers
-  $.each(pingersJSON, function (i, v) {
+  $.each(pingers, function (index, pinger) {
 
-    console.log(v);
+    // show pins
+    var marker = new google.maps.Marker({
+      position: {lat: pinger.lat, lng: pinger.lng },
+      map: gmap,
+      zIndex: index,
+      icon: {
+        // twitter avatar as icon
+        url: pinger.image,
+        size: new google.maps.Size(32, 32),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 32),
+        scaledSize: new google.maps.Size(32, 32)
+      }
+    });
 
   });
 
 };
-
-//
-
-
-

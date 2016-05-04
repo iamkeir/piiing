@@ -11,7 +11,7 @@ ping_1.save
 
 user_2 = User.new
 user_2.nickname = "iamkeir"
-user_2.image = "https://pbs.twimg.com/profile_images/722882947779530752/_X9F81V7_400x400.jpg"
+user_2.image = "https://pbs.twimg.com/profile_images/711850299993006080/WA4Fpx08_400x400.jpg"
 user_2.save
 
 ping_2 = Ping.new

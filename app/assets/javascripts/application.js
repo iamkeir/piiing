@@ -17,7 +17,10 @@
 var gmap;
 var $mapContainer = $('.map');
 var $overlay = $('.overlay');
+var $toolbar = $('.toolbar');
 var $form = $('#new_ping');
+
+$toolbar.hide();
 
 // Handle if we have the geolocation API
 if (navigator.geolocation) {
@@ -62,6 +65,7 @@ function getPosition(position) {
   // handle ajax
   $form.on('ajax:success', function() {
     $overlay.hide();
+    $toolbar.show();
 
     console.log('sniffing out other pingers...');
 
@@ -69,7 +73,11 @@ function getPosition(position) {
     $.getJSON('/pings/near', function(pingsJSON) {
 
       // show tha pingers!
-      showOtherPingers(pingsJSON);
+      $('#ping-me').on('click', function(e) {
+        e.preventDefault();
+        showOtherPingers(pingsJSON);
+      });
+
     });
 
   });

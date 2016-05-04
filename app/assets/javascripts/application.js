@@ -18,9 +18,6 @@ var gmap;
 var $mapContainer = $('.map');
 var $overlay = $('.overlay');
 
-// var latStart = 51.455313;
-// var lngStart = -2.591902;
-
 // Handle if we have the geolocation API
 if (navigator.geolocation) {
   console.log('geolocation api available');
@@ -31,7 +28,6 @@ if (navigator.geolocation) {
 // do shit when we click
 $('.btn-get-location').click(function(e) {
   e.preventDefault();
-
   navigator.geolocation.getCurrentPosition(getPosition, showLocationError); // get geo data
 });
 
@@ -51,7 +47,6 @@ function getPosition(position) {
   console.log(latitude,longitude);
 
   $overlay.hide(); // hide overlay
-
   showMeOnMap(latitude,longitude); // centre map on my location
 };
 
@@ -66,13 +61,21 @@ function showMeOnMap(latitude,longitude) {
     20: Buildings
   */
 
+  // map options
   var mapOptions = {
-    zoom: 20,
+    zoom: 10,
     center: { lat: latitude, lng: longitude }
   };
 
-  gmap = new google.maps.Map($mapContainer.get(0), mapOptions); // create new map instance
+  // create new map instance
+  gmap = new google.maps.Map($mapContainer.get(0), mapOptions);
 
+  // Add me as a marker!
+  var marker = new google.maps.Marker({
+    position: { lat: latitude, lng: longitude },
+    map: gmap,
+    title: 'Hello World!'
+  });
 };
 
 // setTimeout(

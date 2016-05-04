@@ -80,5 +80,15 @@ function getPosition(position) {
 
   console.log(latitude,longitude);
 
-  //$overlay.hide();
+  var $form = $('#new_ping');
+
+  $form.on('ajax:success', function() {
+    $overlay.hide();
+
+    // go do ajax to get users...
+  });
+
+  $('#ping_lat').val(latitude);
+  $('#ping_lng').val(longitude);
+  $('#new_ping').submit();
 };

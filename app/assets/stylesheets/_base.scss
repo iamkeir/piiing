@@ -5,11 +5,51 @@ html, body {
   position: relative;
 }
 
+.btn {
+  cursor: pointer;
+  border: 0;
+  padding: 12px 40px;
+  background-color: #00caa7;
+  color: #00caa7;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #00b495;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(#000,0.8);
+}
+
+.overlay__content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(-50%);
+  width: 400px;
+  background: #fff;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 8px 8px 0px rgba(#000,0.5);
+}
+
 .map {
   height: 100%;
 }
 
 .toolbar {
+  display: none;
   background: #ccc;
   position: absolute;
   bottom: 0;

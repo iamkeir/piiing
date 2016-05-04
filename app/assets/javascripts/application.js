@@ -24,21 +24,61 @@
 
 // GOOGLE MAPPERY
 
-var gmap;
-var $mapContainer = $('.map');
+// var gmap;
+// var $mapContainer = $('#map');
 
-var latStart = 51.455313;
-var lngStart = -2.591902;
+// var latStart = 51.455313;
+// var lngStart = -2.591902;
 
-var mapOptions = {
-  zoom: 10,
-  center: { lat: latStart, lng: lngStart }
-};
+// var mapOptions = {
+//   zoom: 10,
+//   center: { lat: latStart, lng: lngStart }
+// };
 
-gmap = new google.maps.Map($mapContainer.get(0), mapOptions); // create new map instance
+// gmap = new google.maps.Map($mapContainer.get(0), mapOptions); // create new map instance
 
 // setTimeout(
 //   function() {
 //     gmap.setCenter({lat: -34.397, lng: 150.644}); // recenter
 //   },
 // 5000);
+
+var $overlay = $('.overlay');
+
+// Handle if we have the geolocation API
+if (navigator.geolocation) {
+  console.log('geolocation api available');
+} else {
+  alert('Sorry your browser doesn\'t support the Geolocation API');
+}
+
+// do shit when we click
+$('.btn-get-location').click(function(e) {
+  e.preventDefault();
+
+  navigator.geolocation.getCurrentPosition(getPosition, showLocationError); // get geo data
+});
+
+// Handle geolocation error
+function showLocationError(error) {
+
+  var errors = {
+      1: 'Permission denied',
+      2: 'Position unavailable',
+      3: 'Request timeout'
+    };
+
+  alert('Error: ' + errors[error.code]);
+};
+
+// Get my position
+function getPosition(position) {
+
+  // Get the geolocation properties and set them as variables
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+
+  console.log(latitude,longitude);
+
+  //$overlay.hide();
+};
